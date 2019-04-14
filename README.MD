@@ -1,5 +1,6 @@
 # Grant access to another AWS Account B to pull or push images to Account A ECR Repo
-Allow AWS Account B to be able to connect to Account A ECR image repository to push or pull images
+To allow AWS Account B to be able to connect to Account A ECR image repository to push or pull images, you must create a policy that allows the secondary account to perform those API calls against the repository.
+
 
 ![Fig : Tag-Based ECR Access Control](https://raw.githubusercontent.com/miztiik/cross-account-ecr-access-control/master/images/miztiik-cross-account-ecr-access-control.png)
 
@@ -10,7 +11,8 @@ Allow AWS Account B to be able to connect to Account A ECR image repository to p
         - Minimum of one repository with atleast the following tag,
         - TagKey: `Team`
         - TagValue: `Payments`
-    - `Account B` user(ex: `devusr`) with AWS CLI access 
+    - `Account B` user(ex: `devusr`) with AWS CLI access
+    - _Note down `Account A & B` IDs_
 
 1. ## Set Repo Permissions Policy in `Account A`
     The following policy allows user `devusr2` to push and pull images to a repo which has the tagkey `Team` and its value as `Payments`. 
@@ -42,7 +44,7 @@ Allow AWS Account B to be able to connect to Account A ECR image repository to p
             },
             "Principal": {
               "AWS": [
-                "arn:aws:iam::991027995570:user/devusr2"
+                "arn:aws:iam::YOUR-ACCOUNT-B-ID:user/devusr2"
               ]
             },
             "Sid": "AllowCrossAccountPushAndPull"
@@ -53,20 +55,21 @@ Allow AWS Account B to be able to connect to Account A ECR image repository to p
 
 
 1. ## Verifying Access from `devusr2@Account B`
+    From the terminal with AWS CLI configured with `devusr2` credentials as profile `dev-acc` run the following,
     1. Get ECR Credentials
-        Change the `YOUR-ACCOUNT-ID` & `dev-acc`
+        Change the `YOUR-ACCOUNT-A-ID` & `dev-acc`
         ```sh
-        $(aws ecr get-login --registry-ids YOUR-ACCOUNT-ID --region eu-central-1 --profile dev-acc)
+        $(aws ecr get-login --registry-ids YOUR-ACCOUNT-A-ID --region eu-central-1 --profile dev-acc)
         ```
     1. Prepare Docker Image
         Change the repo name `my-first-repo` & image `my-first-repo:latest` to suit your environment
         ```sh
-        docker tag my-first-repo:latest YOUR-ACCOUNT-ID.dkr.ecr.eu-central-1.amazonaws.com/my-first-repo:v1
+        docker tag my-first-repo:latest YOUR-ACCOUNT-A-ID.dkr.ecr.eu-central-1.amazonaws.com/my-first-repo:v1
         ```
     1. Push Image to Repo
         Change the repo name `my-first-repo` to suit your environment
         ```sh
-        docker push YOUR-ACCOUNT-ID.dkr.ecr.eu-central-1.amazonaws.com/my-first-repo:v1
+        docker push YOUR-ACCOUNT-A-ID.dkr.ecr.eu-central-1.amazonaws.com/my-first-repo:v1
         ```
 
 ## Support
