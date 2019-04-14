@@ -1,7 +1,7 @@
 # Grant access to another AWS Account B to pull or push images to Account A ECR Repo
 Allow AWS Account B to be able to connect to Account A ECR image repository to push or pull images
 
-![Fig : Serverless AWS KMS Sentry](https://raw.githubusercontent.com/miztiik/serverless-kms-sentry/master/images/serverless-kms-sentry.png)
+![Fig : Tag-Based ECR Access Control](https://raw.githubusercontent.com/miztiik/cross-account-ecr-access-control/master/images/miztiik-cross-account-ecr-access-control.png)
 
 #### Follow this article in [Youtube](https://youtu.be/UYaV-VfnbT8)
 
@@ -70,10 +70,10 @@ Allow AWS Account B to be able to connect to Account A ECR image repository to p
         ```
 
 ## Support
-Please open a [GitHub issue](https://github.com/miztiik/migrate-from-github-to-codecommit/issues/new).
+Please open a [GitHub issue](https://github.com/miztiik/cross-account-ecr-access-control/issues/new).
 
 ## Feedback
-Please open a [GitHub issue](https://github.com/miztiik/migrate-from-github-to-codecommit/issues/new). I do encourage you to contribute your changes and send me pull request.
+Please open a [GitHub issue](https://github.com/miztiik/cross-account-ecr-access-control/issues/new). I do encourage you to contribute your changes and send me pull request.
 
 ##### References
 1. [AWS Answers - Grant Cross Account Access](https://aws.amazon.com/premiumsupport/knowledge-center/secondary-account-access-ecr/)
