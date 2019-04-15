@@ -1,4 +1,4 @@
-# Grant access to another AWS Account B to pull or push images to Account A ECR Repo
+# Grant access to another AWS `Account B` to pull or push images to `Account A` ECR Repo
 To allow AWS Account B to be able to connect to Account A ECR image repository to push or pull images, you must create a policy that allows the secondary account to perform those API calls against the repository.
 
 
