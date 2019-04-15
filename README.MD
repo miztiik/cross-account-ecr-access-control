@@ -11,7 +11,7 @@ To allow AWS Account B to be able to connect to Account A ECR image repository t
         - Minimum of one repository with atleast the following tag,
         - TagKey: `Team`
         - TagValue: `Payments`
-    - `Account B` user(ex: `devusr`) with AWS CLI access
+    - `Account B` user(ex: `devusr2`) with AWS CLI access
     - _Note down `Account A & B` IDs_
 
 1. ## Set Repo Permissions Policy in `Account A`
@@ -59,7 +59,7 @@ To allow AWS Account B to be able to connect to Account A ECR image repository t
     1. Get ECR Credentials
         Change the `YOUR-ACCOUNT-A-ID` & `dev-acc`
         ```sh
-        $(aws ecr get-login --registry-ids YOUR-ACCOUNT-A-ID --region eu-central-1 --profile dev-acc)
+        $(aws ecr get-login --registry-ids YOUR-ACCOUNT-A-ID --no-include-email --region eu-central-1 --profile dev-acc)
         ```
     1. Prepare Docker Image
         Change the repo name `my-first-repo` & image `my-first-repo:latest` to suit your environment
